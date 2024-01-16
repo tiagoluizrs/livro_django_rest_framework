@@ -1,11 +1,15 @@
 from rest_framework import serializers
 from productManager.models import HistoryEntryOutput
+from productManager.serializers import EntryOutputSerializer
+
 
 class HistoryEntryOutputSerializer(serializers.Serializer):
-    entryOutput = serializers.RelatedField(source='entryOutput', required=True, allow_blank=False)
-    qtd = serializers.IntegerField(required=False, allow_blank=True)
-    unit_price = serializers.DecimalField(max_digits=4, decimal_places=2, required=False, allow_blank=True)
-    status = serializers.IntegerField(required=False, allow_blank=True)
+  entryOutput = EntryOutputSerializer(required=True)
+  qtd = serializers.IntegerField(required=False)
+  unit_price = serializers.DecimalField(max_digits=4,
+                                        decimal_places=2,
+                                        required=False)
+  status = serializers.IntegerField(required=False)
 
-    class Meta:
-        model = HistoryEntryOutput
+  class Meta:
+    model = HistoryEntryOutput
