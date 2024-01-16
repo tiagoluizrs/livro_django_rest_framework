@@ -1,0 +1,6 @@
+from productManager.serializers.CategorySerializer import CategorySerializer
+from productManager.serializers.ProductSerializer import ProductSerializer
+from productManager.serializers.ClientSerializer import ClientSerializer
+from productManager.serializers.EntryOutputSerializer import EntryOutputSerializer
+from productManager.serializers.HistoryEntryOutputSerializer import HistoryEntryOutputSerializer
+from productManager.serializers.MyTokenObtainPairSerializer import MyTokenObtainPairSerializer

@@ -1,0 +1,1 @@
+from productManager.views.my_token_obtain_pair_view import MyTokenObtainPairView
