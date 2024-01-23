@@ -1,1 +1,6 @@
-from productManager.views.my_token_obtain_pair_view import MyTokenObtainPairView
+from productManager.views.MyTokenObtainPairView import MyTokenObtainPairView
+from productManager.views.ProductView import ProductView
+from productManager.views.CategoryView import CategoryView
+from productManager.views.ClientView import ClientView
+from productManager.views.EntryOutputView import EntryOutputView
+from productManager.views.HistoryEntryOutputView import HistoryEntryOutputView

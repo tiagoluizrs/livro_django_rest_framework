@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from productManager.models import EntryOutput
 from productManager.serializers import ClientSerializer, ProductSerializer
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
-class EntryOutputSerializer(serializers.Serializer):
+class EntryOutputSerializer(WritableNestedModelSerializer):
   product = ProductSerializer()
   client = ClientSerializer()
   qtd = serializers.IntegerField(required=False)

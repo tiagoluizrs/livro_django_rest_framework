@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from productManager.models import Product
 from productManager.serializers import CategorySerializer
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
-class ProductSerializer(serializers.Serializer):
+class ProductSerializer(WritableNestedModelSerializer):
   name = serializers.CharField(max_length=50, required=True)
   image = serializers.ImageField(required=False)
   inventory_qtd = serializers.IntegerField(required=False)
@@ -15,3 +16,4 @@ class ProductSerializer(serializers.Serializer):
 
   class Meta:
     model = Product
+    fields = '__all__'

@@ -10,7 +10,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     user = self.user
     data['username'] = user.username
 
-    if user.is_superuser:
-      raise serializers.ValidationError("Admins não podem fazer login aqui.")
+    # if user.is_superuser:
+    #   raise serializers.ValidationError("Admins não podem fazer login aqui.")
 
     return data
