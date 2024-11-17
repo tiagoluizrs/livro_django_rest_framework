@@ -5,7 +5,7 @@ from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class CategorySerializer(WritableNestedModelSerializer):
   name = serializers.CharField(max_length=50, required=True)
-  image = serializers.ImageField(required=False)
+  image = serializers.ImageField(required=False, allow_null=True)
   status = serializers.BooleanField(required=False)
 
   class Meta:

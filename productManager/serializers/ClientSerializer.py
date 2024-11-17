@@ -10,3 +10,4 @@ class ClientSerializer(WritableNestedModelSerializer):
 
   class Meta:
     model = Client
+    fields = '__all__'
