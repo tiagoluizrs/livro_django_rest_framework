@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path, include
 from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -20,6 +21,12 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return HttpResponse("Isso nunca será exibido")
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
@@ -37,4 +44,6 @@ urlpatterns = [
         name="swagger-ui",
     ),
     path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    path("", include("django_prometheus.urls")),
+    path("sentry-debug/", trigger_error),
 ]

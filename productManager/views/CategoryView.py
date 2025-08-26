@@ -2,7 +2,9 @@ from rest_framework import viewsets
 from productManager.models import Category
 from productManager.serializers import CategorySerializer
 from rest_framework import permissions
+import logging
 
+logger = logging.getLogger("api")
 
 class CategoryView(viewsets.ModelViewSet):
     """
