@@ -1,0 +1,9 @@
+from productManager.views.MyTokenObtainPairView import MyTokenObtainPairView
+from productManager.views.ProductView import ProductView
+from productManager.views.CategoryView import (
+    CategoryListCreateView,
+    CategoryRetrieveUpdateDestroyView,
+)
+from productManager.views.ClientView import ClientView
+from productManager.views.EntryOutputView import EntryOutputView
+from productManager.views.HistoryEntryOutputView import HistoryEntryOutputView
