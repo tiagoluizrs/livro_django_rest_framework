@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8080
+        volumes:
+            - .:/app
+        environment:
+            - REDIS_HOST=redis
+        ports:
+            - "8080:8080"
+        depends_on:
+            - redis
+    worker:
+        build: .
+        # O comando que rodávamos manualmente, agora fica aqui:
+        command: celery -A productManagerAdmin worker -l info
+        volumes:
+            - .:/app
+        environment:
+            - REDIS_HOST=redis
+        depends_on:
+            - redis
+            - web
+    redis:
+        image: redis:7-alpine
+        ports:
+            - "6379:6379"
+    flower:
+        build: .
+        command: celery -A productManagerAdmin flower
+        ports:
+            - "5555:5555"
+        environment:
+            - REDIS_HOST=redis
+        depends_on:
+            - redis
+            - web

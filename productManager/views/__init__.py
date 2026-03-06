@@ -7,3 +7,4 @@ from productManager.views.CategoryView import (
 from productManager.views.ClientView import ClientView
 from productManager.views.EntryOutputView import EntryOutputView
 from productManager.views.HistoryEntryOutputView import HistoryEntryOutputView
+from productManager.views.ExportView import ProductExportCSVView

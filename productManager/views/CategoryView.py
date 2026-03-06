@@ -9,10 +9,14 @@ from productManager.serializers import (
 )
 
 # Adicione o import de permissions para validarmos as ações de criação, atualização e deleção de categorias
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound
 
 from productManager.utils.CustomPagination import CustomPagination
+
+import logging
+
+logger = logging.getLogger("api")
 
 
 class CategoryListCreateView(generics.ListCreateAPIView):
@@ -22,6 +26,7 @@ class CategoryListCreateView(generics.ListCreateAPIView):
     pagination_class = CustomPagination
 
     def get_queryset(self):
+        logger.info("Rodando o queryset")
         # Customiza o queryset para listar apenas categorias ativas
         return Category.objects.filter(status=True)
 

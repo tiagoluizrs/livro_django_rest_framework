@@ -6,6 +6,16 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
+# Adicione o response apenas para teste
+from django.http import HttpResponse
+
+
+# Adicione esse método apenas para teste
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return HttpResponse("Isso nunca será exibido")
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include("productManager.urls")),
@@ -19,4 +29,6 @@ urlpatterns = [
     ),
     # Rota para a interface gráfica REDOC (Alternativa)
     path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    path("", include("django_prometheus.urls")),
+    path("sentry-debug/", trigger_error),
 ]

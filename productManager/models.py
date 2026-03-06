@@ -15,7 +15,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50, null=False, verbose_name="Nome")
-    image = models.ImageField(null=True, verbose_name="Imagem")
+    image = models.ImageField(null=True, blank=True, verbose_name="Imagem")
     inventory_qtd = models.IntegerField(default=0, verbose_name="Quantidade em estoque")
     price = models.DecimalField(max_digits=13, decimal_places=2, verbose_name="Valor")
     categories = models.ManyToManyField(

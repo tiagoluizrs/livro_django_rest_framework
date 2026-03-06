@@ -8,6 +8,7 @@ from productManager.views import (
     HistoryEntryOutputView,
     CategoryListCreateView,
     CategoryRetrieveUpdateDestroyView,
+    ProductExportCSVView,
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -28,4 +29,5 @@ urlpatterns = [
         CategoryRetrieveUpdateDestroyView.as_view(),
         name="category-detail-update-delete",
     ),
+    path("products/export-csv/", ProductExportCSVView.as_view(), name="product-export"),
 ]
