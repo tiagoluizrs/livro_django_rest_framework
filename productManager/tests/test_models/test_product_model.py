@@ -7,7 +7,6 @@ from productManager.serializers import CategorySerializer
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
 class ProductTests(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(

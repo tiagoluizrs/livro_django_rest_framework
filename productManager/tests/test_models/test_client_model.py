@@ -5,7 +5,6 @@ from productManager.models import Client
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
 class ClientTests(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(

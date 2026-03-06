@@ -23,7 +23,7 @@ class CategoryListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         # Customiza o queryset para listar apenas categorias ativas
-        return Category.objects.filter(active=True)
+        return Category.objects.filter(status=True)
 
     def get_serializer_class(self):
         # Customiza o serializer class dependendo da ação
@@ -33,15 +33,8 @@ class CategoryListCreateView(generics.ListCreateAPIView):
 
     def get_permissions(self):
         # Customiza as permissões dependendo da ação
-        if self.request.method == "POST":
-            permission_classes = [IsAdminUser]
-        else:
-            permission_classes = [IsAuthenticated]
+        permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
-
-    def perform_create(self, serializer):
-        # Adiciona lógica adicional quando um novo objeto está sendo criado
-        serializer.save(created_by=self.request.user)
 
 
 class CategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
@@ -51,7 +44,7 @@ class CategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         obj = super().get_object()
-        if not obj.active:
+        if not obj.status:
             raise NotFound("Esta categoria não está ativa.")
         return obj
 
@@ -67,5 +60,5 @@ class CategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_destroy(self, instance):
         # Adiciona lógica adicional quando um objeto está sendo deletado
-        instance.active = False
+        instance.status = False
         instance.save()

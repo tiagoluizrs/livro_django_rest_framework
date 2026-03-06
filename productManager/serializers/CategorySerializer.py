@@ -12,10 +12,12 @@ class CategorySerializer(WritableNestedModelSerializer):
         model = Category
         fields = "__all__"
 
+
 class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ["id", "name", "image", "status"]
+
 
 class CategoryUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=50, required=True)

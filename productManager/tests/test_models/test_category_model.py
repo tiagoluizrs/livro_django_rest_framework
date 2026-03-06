@@ -5,11 +5,10 @@ from productManager.models import Category
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
 class CategoryModelTest(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(
-            username="testuser", password="testpassword"
+        self.user = User.objects.create_superuser(
+            username="testuser", password="testpassword", email="test@test.com"
         )
         self.client.login(username="testuser", password="testpassword")
 
@@ -40,7 +39,7 @@ class CategoryModelTest(APITestCase):
         self.assertEqual(Category.objects.get(id=2).name, "NewCategory")
 
     def test_update_category(self):
-        url = reverse("category-detail-update-delete", args=[self.category.id])
+        url = reverse("category-detail-update-delete", kwargs={"pk": self.category.id})
         data = {"name": "UpdatedCategory"}
         response = self.client.put(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -49,7 +48,7 @@ class CategoryModelTest(APITestCase):
         )
 
     def test_delete_category(self):
-        url = reverse("category-detail-update-delete", args=[self.category.id])
+        url = reverse("category-detail-update-delete", kwargs={"pk": self.category.id})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Category.objects.count(), 0)
+        self.assertEqual(Category.objects.filter(status=True).count(), 0)
