@@ -18,3 +18,9 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
+
+# Configurações do Celery para testes
+CELERY_BROKER_URL = "memory://"
+CELERY_RESULT_BACKEND = "rpc://"
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_TASK_EAGER_PROPAGATES = True
